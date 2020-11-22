@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+.sign-up, .login {
+    background-color:#203647;
+    border-color: #12232E;
+    color: #EEFBFB;
+    fill: #12232E;
+    border: 1px solid;
+    border-radius: 4px;
+    text-align: center;
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    line-height: 24px;
+    text-transform: uppercase;
+    padding: 3px 16px;
+    opacity: 1;
+  }
+
+  input.ng-invalid.ng-touched {
+    border: 1px solid red;
+}

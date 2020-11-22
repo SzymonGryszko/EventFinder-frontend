@@ -1,0 +1,39 @@
+header{
+    border-radius: 1px solid;
+}
+.eventfinder-text{        
+    font-weight: 700;
+    height: 80px;
+    width: 80px;
+    font-size: 30px;   
+    color: #EEFBFB; 
+}
+
+.login, .signup{    
+    background-color: transparent;
+    border-color: #EEFBFB;
+    color: #EEFBFB;
+    fill:#EEFBFB;
+    border: 1px solid;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: center;
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    line-height: 24px;
+    text-transform: uppercase;
+    padding: 3px 16px;
+    opacity: 1;  
+}
+.signup{
+    background-color: #12232E;
+    border-color: #007CC7;
+    color: #EEFBFB;
+}
+
+.signup:hover{
+    opacity: 0.8;
+}
