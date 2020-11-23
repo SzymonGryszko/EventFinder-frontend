@@ -1,0 +1,32 @@
+.event-card{
+    padding: 30px;
+    margin: 30px;;
+    background-color:#f8f9fa;
+    border: 1px solid #12232E;
+    border-radius: 10px;
+}
+
+button{
+    background-color: #12232E;
+    border-color: #007CC7;
+    color: #EEFBFB;
+}
+
+button:hover {
+    opacity: 0.8;
+    color: #EEFBFB;
+}
+
+.search-box {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.search-section{
+    margin-top: 35px;
+    padding: 0px;
+}
+
+.input {
+    padding: 0px;
+}
