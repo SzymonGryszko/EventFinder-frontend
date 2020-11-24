@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { EventModel } from '../shared/event-model';
-import { PostService } from '../shared/event.service';
+import { EventService } from '../shared/event.service';
 
 @Component({
   selector: 'app-home',
@@ -11,13 +12,20 @@ import { PostService } from '../shared/event.service';
 export class HomeComponent implements OnInit {
 
   event$: Array<EventModel> = [];
+  cities: Array<String> = [];
   searchForm: FormGroup;
 
-  constructor(private postService: PostService) {
-    this.postService.getAllPost().subscribe(event => {
+  constructor(private eventService: EventService, private router: Router) {
+    this.eventService.getAllEvents().subscribe(event => {
       this.event$ = event;
       console.log(event);
     })
+
+    this.eventService.getAllCities().subscribe(city => {
+      this.cities = city;
+      console.log(this.cities);
+    });
+
    }
 
   ngOnInit(): void {
@@ -27,12 +35,26 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  goToPost(postId:number) {
-
+  goToEvent(eventId:number): void {
+    this.router.navigateByUrl('/view-event/' + eventId);
   }
 
-  search() {
-    
+  search(): void {
+    let cityValue: string = this.searchForm.get('city').value;
+    let keyWordValue: string = this.searchForm.get('keyWord').value;
+
+    if(cityValue === 'City') {
+      cityValue = '';
+    }
+
+    this.eventService.getAllEvents(cityValue, keyWordValue).subscribe(event => {
+      this.event$ = event;
+      console.log(event);
+    });
+
+    cityValue = null;
+    keyWordValue = null;
+
   }
 
 }

@@ -10,24 +10,10 @@ button{
     background-color: #12232E;
     border-color: #007CC7;
     color: #EEFBFB;
+    margin-top: 30px;
 }
 
 button:hover {
     opacity: 0.8;
     color: #EEFBFB;
-}
-
-.search-box {
-    padding-left: 0px;
-    padding-right: 0px;
-}
-
-.search-section{
-    margin-top: 35px;
-    padding: 0px;
-    width: 100%;
-}
-
-.input {
-    padding: 0px;
 }

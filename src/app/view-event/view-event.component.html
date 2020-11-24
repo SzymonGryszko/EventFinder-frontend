@@ -1,0 +1,30 @@
+<div class="body">
+    <div class="container w-75">
+        <div class="event-card">
+            <div class="row">
+                <div class="col-sm-8"><h3>{{event.title}}</h3></div>
+                <div class="col-sm-4"><h4>{{event.city}}</h4></div>
+            </div>
+            <div class="row">
+                <div class="col-sm">Address: {{event.address}}</div>
+            </div>
+            <div class="row">
+                <div class="col-auto">Starting date: {{event.startingDate}}</div>
+                <div class="col-auto">End date: {{event.endDate}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm">{{event.description}}</div>
+            </div>
+            <div class="row">
+                <div class="col-sm">Organizer: {{event.organizerName}}</div>
+                <div class="col-sm">Number of Attendees: {{event.numberOfAttendees}}</div>
+                <div class="col-sm">Last updated: {{event.lastUpdated}}</div>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-block">
+                    Sign up!
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
