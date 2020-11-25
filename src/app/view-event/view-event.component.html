@@ -13,7 +13,7 @@
                 <div class="col-auto">End date: {{event.endDate}}</div>
             </div>
             <div class="row">
-                <div class="col-sm">{{event.description}}</div>
+                <div class="col-sm"><p [innerHTML] = "event.description"></p></div>
             </div>
             <div class="row">
                 <div class="col-sm">Organizer: {{event.organizerName}}</div>
@@ -26,5 +26,29 @@
                 </button>
             </div>
         </div>
+
+
+        <!-- comment section -->
+        <div style="margin-bottom: 80px;" class="post-comment">
+            <form [formGroup]="commentForm" (ngSubmit)="postComment()">
+              <div class="form-group">
+                <textarea class="form-control" [formControlName]="'text'" placeholder="Comments?"></textarea>
+              </div>
+              <button style="margin-top: 15px;" type="submit" class="login float-right">Comment</button>
+            </form>
+        </div>
+          <div *ngFor="let comment of comments">
+            <div class="comment">
+            <div class="username">
+                <div><p style="margin-bottom: 0;">{{comment.username}}</div>
+              </div>
+              <div>
+                <small>{{comment.createdAt}}</small>
+              </div>
+              <b>{{comment.text}}</b>
+            </div>
+            <hr />
+          </div>
+
     </div>
 </div>

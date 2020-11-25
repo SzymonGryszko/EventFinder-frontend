@@ -3,7 +3,6 @@ import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest
 import { AuthService } from './shared/auth.service';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, filter, switchMap, take } from 'rxjs/operators';
-import { error } from 'console';
 import { LoginResponse } from './login/login-response.payload';
 
 @Injectable({
@@ -14,21 +13,16 @@ export class TokenInterceptor implements HttpInterceptor {
     isTokenRefreshing = false;
     refreshTokenSubject: BehaviorSubject<any> = new BehaviorSubject(null);
 
-    constructor(public authService: AuthService) {}
+    constructor(public authService: AuthService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler):
         Observable<HttpEvent<any>> {
 
-            if (req.url.indexOf('refreshToken') !== -1 
-            || req.url.indexOf('login') !== -1
-            || req.url.indexOf('reset') !== -1
-            || req.url.indexOf('remind') !== -1
-            || (req.url.indexOf('events') !== -1 && req.method !== 'GET') 
-            || (req.url.indexOf('comments') !== -1 && req.method !== 'GET')) {
-                return next.handle(req);
-            }
-            
-            const jwtToken = this.authService.getJwtToken();
+        if (req.url.indexOf('refresh') !== -1 || req.url.indexOf('login') !== -1) {
+            return next.handle(req);
+        }
+        const jwtToken = this.authService.getJwtToken();
+
 
         if (jwtToken) {
             return next.handle(this.addToken(req, jwtToken)).pipe(catchError(error => {
