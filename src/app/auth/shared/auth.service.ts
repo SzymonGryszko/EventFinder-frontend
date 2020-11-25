@@ -6,6 +6,7 @@ import { LoginRequestPayload } from '../login/login.request.payload';
 import { LoginResponse } from '../login/login-response.payload';
 import { LocalStorageService } from 'ngx-webstorage';
 import { map, tap } from 'rxjs/operators';
+import jwtDecode, { JwtPayload } from "jwt-decode";
 
 @Injectable({
   providedIn: 'root'
@@ -53,11 +54,19 @@ export class AuthService {
         this.localStorage.store('username', data.username);
         this.localStorage.store('refreshToken', data.refreshToken);
         this.localStorage.store('expiresAt', data.expiresAt);
+
+        this.getRoleFromJwt(data.authenticationToken);
         
         this.loggedIn.emit(true);
         this.username.emit(data.username);
         return true;
       }));
+  }
+
+  getRoleFromJwt(token: string) {
+  const decoded = jwtDecode<JwtPayload>(token);
+  let authorities: Array<Object> = decoded['authorities'];
+  let role: string = authorities[0]['authority'];
   }
 
 
