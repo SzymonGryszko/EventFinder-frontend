@@ -16,6 +16,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ViewEventComponent } from './view-event/view-event.component';
 import { TokenInterceptor } from './auth/token-interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MyEventsComponent } from './my-events/my-events.component';
  
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SignupComponent,
     LoginComponent,
     HomeComponent,
-    ViewEventComponent
+    ViewEventComponent,
+    MyEventsComponent
   ],
   imports: [
     BrowserModule,

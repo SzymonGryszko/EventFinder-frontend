@@ -8,6 +8,7 @@
         </a>
       </div>
       <div class="center">
+        <div *ngIf="isLoggedIn">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
@@ -15,19 +16,19 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">My-Events</a>
               </li>
-              <li class="nav-item dropdown">
+              <li *ngIf="role === 'ROLE_ORGANIZER' " class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Organizer
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="#">Create new</a>
-                  <a class="dropdown-item" href="#">My Events</a>
                 </div>
               </li>
-            <li class="nav-item">
+            <li *ngIf="role === 'ROLE_ADMIN'" class="nav-item">
                 <a class="nav-link" href="#">Admin</a>
               </li>
           </ul>
+        </div>
       </div>
       <div class="flex-grow-1 float-right">
         <div *ngIf="isLoggedIn" ngbDropdown class="float-right">
@@ -40,7 +41,7 @@
             </button>
         </div>            
         <div *ngIf="!isLoggedIn">
-            <a routerLink="/sign-up" class="float-right sign-up mr-2">Sign up</a>
+            <a routerLink="/signup" class="float-right sign-up mr-2">Sign up</a>
             <a routerLink="/login" class="float-right login mr-2">Login</a>
         </div>
     </div>

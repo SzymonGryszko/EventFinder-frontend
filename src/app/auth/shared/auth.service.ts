@@ -15,6 +15,8 @@ export class AuthService {
 
   @Output() loggedIn: EventEmitter<boolean> = new EventEmitter();
   @Output() username: EventEmitter<string> = new EventEmitter();
+  @Output() role: EventEmitter<string> = new EventEmitter();
+  userRole: string;
 
   refreshTokenPayload = {
     refreshToken: this.getRefreshToken(),
@@ -30,6 +32,8 @@ export class AuthService {
   }
 
   logout() {
+    this.refreshTokenPayload.username = this.getUserName();
+    this.refreshTokenPayload.refreshToken = this.getRefreshToken();
     this.httpClient.post('http://localhost:8080/api/auth/logout', this.refreshTokenPayload,
       { responseType: 'text' })
       .subscribe(data => {
@@ -55,18 +59,20 @@ export class AuthService {
         this.localStorage.store('refreshToken', data.refreshToken);
         this.localStorage.store('expiresAt', data.expiresAt);
 
-        this.getRoleFromJwt(data.authenticationToken);
+        this.userRole = this.getRoleFromJwt(data.authenticationToken);
+        
         
         this.loggedIn.emit(true);
         this.username.emit(data.username);
+        this.role.emit(this.userRole);
         return true;
       }));
   }
 
-  getRoleFromJwt(token: string) {
+  getRoleFromJwt(token: string): string {
   const decoded = jwtDecode<JwtPayload>(token);
   let authorities: Array<Object> = decoded['authorities'];
-  let role: string = authorities[0]['authority'];
+  return authorities[0]['authority'];
   }
 
 
@@ -80,6 +86,10 @@ export class AuthService {
 
   getRefreshToken() {
     return this.localStorage.retrieve('refreshToken');
+  }
+
+  getRole() {
+    return this.userRole;
   }
 
   refreshToken() {
