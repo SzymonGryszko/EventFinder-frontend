@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { throwError } from 'rxjs';
 import { AuthService } from '../shared/auth.service';
 import { LoginRequestPayload } from './login.request.payload';
 
@@ -46,13 +47,12 @@ export class LoginComponent implements OnInit {
     this.loginRequestPayload.password = this.loginForm.get('password').value;
 
     this.authService.login(this.loginRequestPayload).subscribe(data => {
-      if (data) {
-        this.isError = false;
-        this.router.navigateByUrl('/');
-        this.toastr.success('Login successful');
-      } else {
-        this.isError = true;
-      }
+      this.isError = false;
+      this.router.navigateByUrl('');
+      this.toastr.success('Login Successful');
+    }, error => {
+      this.isError = true;
+      throwError(error);
     });
   }
 }

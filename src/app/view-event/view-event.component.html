@@ -21,7 +21,7 @@
                 <div class="col-sm">Last updated: {{event.lastUpdated}}</div>
             </div>
             <div class="row">
-                <button type="button" class="btn btn-block">
+              <button type="button" class="btn btn-block" (click)="signUpForEvent()">
                     Sign up!
                 </button>
             </div>
@@ -32,9 +32,9 @@
         <div style="margin-bottom: 80px;" class="post-comment">
             <form [formGroup]="commentForm" (ngSubmit)="postComment()">
               <div class="form-group">
-                <textarea class="form-control" [formControlName]="'text'" placeholder="Comments?"></textarea>
+                <textarea class="form-control" [formControlName]="'text'" [placeholder]="placeHolder"></textarea>
               </div>
-              <button style="margin-top: 15px;" type="submit" class="login float-right">Comment</button>
+              <button  style="margin-top: 15px;" type="submit" class="login float-right">Comment</button>
             </form>
         </div>
           <div *ngFor="let comment of comments">

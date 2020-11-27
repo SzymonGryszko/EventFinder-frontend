@@ -33,10 +33,10 @@
                             </button>
                             <span style="padding-left: 15px">New User? <a routerLink="/signup">SIGN UP</a></span>
                         </span>   
-                        <div class="login-failed" *ngIf='this.isError'>
+                        <div class="login-failed" *ngIf="this.isError">
                              <p class="login-failed-text">Login Failed. Please check your credentials and try again.</p>   
                         </div>
-                        <div class="login-failed" [ngStyle]="{'background-color':'lightgreen', 'border-radius':'6px'}" *ngIf="this.registerSuccessMessage.length > 0">
+                        <div class="login-success" *ngIf="this.registerSuccessMessage.length > 0">
                             <p class="register-success-text">{{registerSuccessMessage}}</p>   
                        </div>                       
                     </form>

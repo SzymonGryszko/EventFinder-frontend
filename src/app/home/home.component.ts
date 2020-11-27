@@ -49,7 +49,6 @@ export class HomeComponent implements OnInit {
 
     this.eventService.getAllEvents(cityValue, keyWordValue).subscribe(event => {
       this.event$ = event;
-      console.log(event);
     });
 
     cityValue = null;

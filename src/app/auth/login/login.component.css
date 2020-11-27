@@ -6,9 +6,20 @@
     text-align: center;
     margin: auto;
     margin-top: 10px;
-    border: 2px solid black;
+    border: 2px solid rgb(83, 0, 0);
+    border-radius: 10px;
     width: 65%;    
-    background-color: red;
+    background-color: rgb(216, 33, 33);
+}
+
+.login-success {
+    text-align: center;
+    margin: auto;
+    margin-top: 10px;
+    border: 2px solid rgb(1, 92, 20);
+    border-radius: 10px;
+    width: 65%;    
+    background-color: rgb(36, 136, 49);
 }
 
 .login-failed-text{

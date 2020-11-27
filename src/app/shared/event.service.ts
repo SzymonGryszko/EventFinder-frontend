@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EventModel } from './event-model';
+import { SignupForEventPayload } from './event/signupforevent.payload';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,11 @@ export class EventService {
   getAllCities():Observable<Array<String>> {
     return this.http.get<Array<String>>('http://localhost:8080/api/events/cities')
   }
+
+  signupUserForEvent(signupForEventRequestPayload: SignupForEventPayload): Observable<any> {
+    return this.http.post<any>('http://localhost:8080/api/events/eventSignup', signupForEventRequestPayload);
+  }
+
+  
 
 }
