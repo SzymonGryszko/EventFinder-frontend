@@ -69,7 +69,7 @@ export class ViewEventComponent implements OnInit {
 
   getEventsForUser() {
     if(this.isLoggedIn) {
-      this.eventService.getEventForGivenUser(this.currentUsername).subscribe(data => {
+      this.eventService.getEventsForUser(this.currentUsername).subscribe(data => {
         this.eventsForGivenUser = data;
         this.isAlreadySignedUp = this.checkIfUserIsAlreadySignedUp(data);
       });
@@ -112,11 +112,11 @@ export class ViewEventComponent implements OnInit {
 
     this.signupForEventPayload.username = this.authService.getUserName();
     this.signupForEventPayload.eventId = this.currentEventId;
-    
+
     this.eventService.signupUserForEvent(this.signupForEventPayload)
       .subscribe(data => {
+        this.isAlreadySignedUp = true;
         this.toastr.success("Signup successful");
-        
       }, error => {
         throwError(error);
         this.toastr.error("Oops! Something went wrong :(")

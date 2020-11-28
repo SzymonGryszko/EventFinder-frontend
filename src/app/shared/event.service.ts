@@ -30,8 +30,12 @@ export class EventService {
     return this.http.post<any>('http://localhost:8080/api/events/eventSignup', signupForEventRequestPayload);
   }
 
-  getEventForGivenUser(name: string): Observable<Array<EventModel>> {
+  getEventsForUser(name: string): Observable<Array<EventModel>> {
     return this.http.get<Array<EventModel>>('http://localhost:8080/api/events/my-events/' + name);
+  }
+
+  getAllEventsForOrganizer(name: string): Observable<Array<EventModel>> {
+    return this.http.get<Array<EventModel>>('http://localhost:8080/api/events/by-organizer/' + name);
   }
 
 }

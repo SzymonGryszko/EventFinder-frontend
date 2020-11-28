@@ -1,1 +1,23 @@
-<p>my-events works!</p>
+<div class="container">
+    <div class="row card-group">
+        <div class="col-6"  *ngFor="let event of myEvents">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h4>{{event.title}} - {{event.startingDate}}</h4>
+                  </div>
+                <div class="card-body">
+                    <p class="card-text">{{event.description}}</p>
+                        <div class="row justify-content-center">
+                            <button (click)="goToEvent(event.eventId)" class="btn btn-outline-dark">View</button>
+                            <span *ngIf="this.role === 'ROLE_ORGANIZER'">
+                                <a href="#" class="btn">Go somewhere</a>
+                                <a href="#" class="btn">Go somewhere</a>
+                            </span>
+                        </div>
+                </div>
+                <div class="card-footer bg-transparent">{{event.city}}</div>
+                
+            </div>
+        </div>
+    </div>
+</div>  
