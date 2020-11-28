@@ -21,9 +21,9 @@
                 <div class="col-sm">Last updated: {{event.lastUpdated}}</div>
             </div>
             <div class="row">
-              <button type="button" class="btn btn-block" (click)="signUpForEvent()">
-                    Sign up!
-                </button>
+              <button [disabled]="!isLoggedIn && isAlreadySignedUp"
+              type="button" class="btn btn-block" (click)="signUpForEvent()">
+              {{isAlreadySignedUp == true ? 'You are already signed up' : isLoggedIn == true ? 'Sign up!' : 'Log in to sign up' }}</button>
             </div>
         </div>
 

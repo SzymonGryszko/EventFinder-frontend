@@ -26,6 +26,8 @@ export class ViewEventComponent implements OnInit {
   comments: CommentPayload[];
   placeHolder: string;
   signupForEventPayload: SignupForEventPayload;
+  eventsForGivenUser: Array<EventModel> = [];
+  isAlreadySignedUp: boolean;
 
   constructor(private activateRoute: ActivatedRoute, private eventService: EventService,
     private commentService: CommentService, private authService: AuthService,
@@ -66,7 +68,16 @@ export class ViewEventComponent implements OnInit {
   }
 
   getEventsForUser() {
-    
+    if(this.isLoggedIn) {
+      this.eventService.getEventForGivenUser(this.currentUsername).subscribe(data => {
+        this.eventsForGivenUser = data;
+        this.isAlreadySignedUp = this.checkIfUserIsAlreadySignedUp(data);
+      });
+    }
+  }
+
+  checkIfUserIsAlreadySignedUp(allUserEvents: Array<EventModel>): boolean{
+    return allUserEvents.map(object => String(object.eventId)).includes(String(this.currentEventId));
   }
 
   getCommentsForEvent() {
@@ -97,8 +108,11 @@ export class ViewEventComponent implements OnInit {
   }
 
   signUpForEvent() {
+    if(this.isLoggedIn && !this.isAlreadySignedUp) {
+
     this.signupForEventPayload.username = this.authService.getUserName();
     this.signupForEventPayload.eventId = this.currentEventId;
+    
     this.eventService.signupUserForEvent(this.signupForEventPayload)
       .subscribe(data => {
         this.toastr.success("Signup successful");
@@ -107,6 +121,7 @@ export class ViewEventComponent implements OnInit {
         throwError(error);
         this.toastr.error("Oops! Something went wrong :(")
       });
+    }
   }
 
 }
