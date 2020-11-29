@@ -16,22 +16,25 @@ export class HomeComponent implements OnInit {
   searchForm: FormGroup;
 
   constructor(private eventService: EventService, private router: Router) {
-    this.eventService.getAllEvents().subscribe(event => {
-      this.event$ = event;
-      console.log(event);
-    })
-
-    this.eventService.getAllCities().subscribe(city => {
-      this.cities = city;
-      console.log(this.cities);
-    });
-
+    this.router.routeReuseStrategy.shouldReuseRoute = () => {
+      return false;
+    };
    }
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
       city: new FormControl(''),
       keyWord: new FormControl(''),
+    });
+    this.fetchData();
+  }
+
+  fetchData() {
+    this.eventService.getAllEvents().subscribe(event => {
+      this.event$ = event;
+    })
+    this.eventService.getAllCities().subscribe(city => {
+      this.cities = city;
     });
   }
 

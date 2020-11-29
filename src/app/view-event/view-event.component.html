@@ -3,7 +3,7 @@
         <div class="event-card">
             <div class="row">
                 <div class="col-sm-8"><h3>{{event.title}}</h3></div>
-                <div class="col-sm-4"><h4>{{event.city}}</h4></div>
+                <div class="col-sm-4"><h3>{{event.city}}</h3></div>
             </div>
             <div class="row">
                 <div class="col-sm">Address: {{event.address}}</div>
@@ -22,8 +22,8 @@
             </div>
             <div class="row">
               <button [disabled]="!isLoggedIn && isAlreadySignedUp"
-              type="button" class="btn btn-block" (click)="signUpForEvent()">
-              {{isAlreadySignedUp == true ? 'You have already signed up' : isLoggedIn == true ? 'Sign up!' : 'Login to sign up' }}</button>
+              type="button" class="btn btn-block" (click)="!isAlreadySignedUp ? signUpForEvent() : resignFromEvent()">
+              {{isAlreadySignedUp ? 'You have already signed up - click to resign' : isLoggedIn ? 'Sign up!' : 'Login to register for event' }}</button>
             </div>
         </div>
 
@@ -34,7 +34,7 @@
               <div class="form-group">
                 <textarea class="form-control" [formControlName]="'text'" [placeholder]="placeHolder"></textarea>
               </div>
-              <button  style="margin-top: 15px;" type="submit" class="login float-right">Comment</button>
+              <button [disabled]="!commentForm.valid" style="margin-top: 15px;" type="submit" class="commentButton float-right">Comment</button>
             </form>
         </div>
           <div *ngFor="let comment of comments">

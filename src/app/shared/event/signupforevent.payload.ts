@@ -1,4 +1,4 @@
-export interface SignupForEventPayload{
+export interface SignupOrResignEventPayload{
     username: string;
     eventId: number;
 }

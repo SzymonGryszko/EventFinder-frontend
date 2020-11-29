@@ -1,9 +1,16 @@
 .event-card{
     padding: 30px;
     margin: 30px;;
-    background-color:#f8f9fa;
+    background-color:#fff;
     border: 1px solid #12232E;
-    border-radius: 10px;
+    border-radius: 6px;
+
+}
+
+.event-card:hover{
+    box-shadow: 0 1px 15px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease-in-out;
+
 }
 
 button{

@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar static-top navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar static-top navbar-expand-lg navbar-dark bg-dark shadow">
       <div class="flex-grow-1">
         <a aria-label="Home" routerLink="/">
           <span class="eventfinder-text">
@@ -11,7 +11,7 @@
         <div *ngIf="isLoggedIn">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" routerLink=''>Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" routerLink=''>Home<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" routerLink='/my-events'>My-Events</a>
@@ -21,7 +21,7 @@
                   Organizer
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Create new</a>
+                  <a class="dropdown-item" routerLink="/add-event">Create new</a>
                 </div>
               </li>
             <li *ngIf="role === 'ROLE_ADMIN'" class="nav-item">

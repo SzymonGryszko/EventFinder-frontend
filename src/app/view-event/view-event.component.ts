@@ -8,7 +8,7 @@ import { CommentPayload } from '../shared/comments/comment.payload';
 import { CommentService } from '../shared/comments/comment.service';
 import { EventModel } from '../shared/event-model';
 import { EventService } from '../shared/event.service';
-import { SignupForEventPayload } from '../shared/event/signupforevent.payload';
+import { SignupOrResignEventPayload } from '../shared/event/signupforevent.payload';
 
 @Component({
   selector: 'app-view-event',
@@ -25,7 +25,7 @@ export class ViewEventComponent implements OnInit {
   commentPayload: CommentPayload;
   comments: CommentPayload[];
   placeHolder: string;
-  signupForEventPayload: SignupForEventPayload;
+  signupOrResignEventPayload: SignupOrResignEventPayload;
   eventsForGivenUser: Array<EventModel> = [];
   isAlreadySignedUp: boolean;
 
@@ -34,7 +34,7 @@ export class ViewEventComponent implements OnInit {
     private toastr: ToastrService) { 
     this.currentEventId = this.activateRoute.snapshot.params.eventId;
 
-    this.signupForEventPayload = {
+    this.signupOrResignEventPayload = {
       username: '',
       eventId: null
     }
@@ -110,17 +110,35 @@ export class ViewEventComponent implements OnInit {
   signUpForEvent() {
     if(this.isLoggedIn && !this.isAlreadySignedUp) {
 
-    this.signupForEventPayload.username = this.authService.getUserName();
-    this.signupForEventPayload.eventId = this.currentEventId;
+    this.signupOrResignEventPayload.username = this.authService.getUserName();
+    this.signupOrResignEventPayload.eventId = this.currentEventId;
 
-    this.eventService.signupUserForEvent(this.signupForEventPayload)
+    this.eventService.signupUserForEvent(this.signupOrResignEventPayload)
       .subscribe(data => {
         this.isAlreadySignedUp = true;
         this.toastr.success("Signup successful");
+        this.getEventById();
       }, error => {
         throwError(error);
         this.toastr.error("Oops! Something went wrong :(")
       });
+    }
+  }
+
+  resignFromEvent() {
+    if(this.isLoggedIn && this.isAlreadySignedUp) {
+      this.signupOrResignEventPayload.username = this.authService.getUserName();
+      this.signupOrResignEventPayload.eventId = this.currentEventId;
+
+      this.eventService.resignFromEvent(this.signupOrResignEventPayload).subscribe(data => {
+        this.isAlreadySignedUp = false;
+        this.toastr.success('Sad to see you go :(')
+        this.getEventById();
+      }, error => {
+        throwError(error);
+        this.toastr.error("Oops! Something went wrong :(")
+      });
+
     }
   }
 

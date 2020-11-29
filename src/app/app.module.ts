@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { LoginComponent } from './auth/login/login.component';
 import { NgxWebstorageModule } from 'ngx-webstorage';
@@ -17,6 +17,9 @@ import { ViewEventComponent } from './view-event/view-event.component';
 import { TokenInterceptor } from './auth/token-interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MyEventsComponent } from './my-events/my-events.component';
+import { AddEventComponent } from './add-event/add-event.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditEventComponent } from './edit-event/edit-event.component';
  
 @NgModule({
   declarations: [
@@ -26,7 +29,9 @@ import { MyEventsComponent } from './my-events/my-events.component';
     LoginComponent,
     HomeComponent,
     ViewEventComponent,
-    MyEventsComponent
+    MyEventsComponent,
+    AddEventComponent,
+    EditEventComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +42,9 @@ import { MyEventsComponent } from './my-events/my-events.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     FontAwesomeModule,
-    NgbModule
+    NgbModule,
+    EditorModule,
+    FormsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
   bootstrap: [AppComponent]

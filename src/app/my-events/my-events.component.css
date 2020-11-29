@@ -1,3 +1,9 @@
 .container {
     margin-top: 64px;;
 }
+.card {
+    margin-top: 15px;
+}
+.btn {
+    margin: 5px 5px 5px 5px;
+}

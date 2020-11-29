@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background: url('/../assets/images/200.jpg') no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
 .sign-up, .login {
     background-color:#203647;
     border-color: #12232E;

@@ -1,0 +1,47 @@
+<div class="container">
+    <form [formGroup]="addForm" (ngSubmit)="saveEvent()">
+      <div class="form-header" style="text-align: center"><h4>Create new event!</h4></div>
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input [formControlName]="'title'" type="text" class="form-control" id="title" placeholder="My Event">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-8">
+            <label for="address">Address</label>
+            <input [formControlName]="'address'" type="text" class="form-control" id="address" placeholder="Main Street 1234">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="city">City</label>
+            <input [formControlName]="'city'" type="text" class="form-control" id="city" placeholder="City">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <editor id="description" [formControlName]="'description'" [init]="{
+            height: 300,
+            menubar: false,
+            plugins: [
+              'advlist autolink lists link image charmap print preview anchor',
+              'searchreplace visualblocks code fullscreen',
+              'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar:
+              'undo redo | formatselect | bold italic backcolor | \
+              alignleft aligncenter alignright alignjustify | \
+              bullist numlist outdent indent | removeformat | help'
+          }"></editor>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputCity">Start Date</label>
+            <input [formControlName]="'startingDate'" type="date" class="form-control" id="inputCity" min="{{this.today}}">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputZip">End Date</label>
+            <input [formControlName]="'endDate'" type="date" class="form-control" id="inputZip" min="{{addForm.value.startingDate}}">
+          </div>
+        </div>
+        <button [disabled]="!addForm.valid" type="submit" class="btn btn-primary">Create</button>
+      </form>
+</div>
+

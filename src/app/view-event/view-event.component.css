@@ -1,9 +1,33 @@
 .event-card{
     padding: 30px;
     margin: 30px 0 30px 0;
-    background-color:#f8f9fa;
+    background-color:#fff;
     border: 1px solid #12232E;
     border-radius: 10px;
+}
+
+.commentButton{
+    border: 1px solid;
+    border-radius: 4px;
+    text-align: center;
+    letter-spacing: 1px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    line-height: 24px;
+    text-transform: uppercase;
+    padding: 3px 16px;
+    opacity: 1;
+}
+
+.commentButton:hover:enabled {
+    background-color: #12232E; 
+    color: #EEFBFB;
+}
+
+.commentButton:disabled {
+    opacity: 0.5;
 }
 
 button{
