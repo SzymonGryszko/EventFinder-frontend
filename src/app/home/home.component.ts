@@ -26,13 +26,11 @@ export class HomeComponent implements OnInit {
       city: new FormControl(''),
       keyWord: new FormControl(''),
     });
-    this.fetchData();
+    this.fetchnInitialData();
   }
 
-  fetchData() {
-    this.eventService.getAllEvents().subscribe(event => {
-      this.event$ = event;
-    })
+  fetchnInitialData() {
+    this.fetchEventsWithParams();
     this.eventService.getAllCities().subscribe(city => {
       this.cities = city;
     });
@@ -42,7 +40,7 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('/view-event/' + eventId);
   }
 
-  search(): void {
+  fetchEventsWithParams(): void {
     let cityValue: string = this.searchForm.get('city').value;
     let keyWordValue: string = this.searchForm.get('keyWord').value;
 

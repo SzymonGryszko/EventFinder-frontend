@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -41,9 +42,13 @@ export class SignupComponent implements OnInit {
      .subscribe(data => {
         this.router.navigate(['/login'], 
         { queryParams: { registered: 'true' } });
-     }, error => {
-       console.log(error);
-       this.toastr.error('Registration Failed! Try again');
+     }, (error: HttpErrorResponse) => {
+       if (error.status === 409) {
+          this.toastr.error('Username already exists')
+       } else {
+        console.log(error);
+        this.toastr.error('Registration Failed! Try again');
+       }
      });
 
   }
