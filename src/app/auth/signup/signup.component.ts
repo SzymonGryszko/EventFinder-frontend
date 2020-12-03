@@ -20,7 +20,8 @@ export class SignupComponent implements OnInit {
     this.signupRequestPayload = {
       username: '',
       email: '',
-      password: ''
+      password: '',
+      accountRole: ''
     }
   }
 
@@ -29,7 +30,9 @@ export class SignupComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       username: new FormControl('', Validators.required),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(30),
-        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,30}')])
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,30}')]
+        ),
+      accountRole: new FormControl('', Validators.required)
     });
   }
 
@@ -37,6 +40,7 @@ export class SignupComponent implements OnInit {
     this.signupRequestPayload.username = this.signupForm.get('username').value;
     this.signupRequestPayload.email = this.signupForm.get('email').value;
     this.signupRequestPayload.password = this.signupForm.get('password').value;
+    this.signupRequestPayload.accountRole = this.signupForm.get('accountRole').value;
 
     this.authService.signup(this.signupRequestPayload)
      .subscribe(data => {

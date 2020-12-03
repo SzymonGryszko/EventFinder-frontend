@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
     .subscribe(params => {
       if (params.registered !== undefined && params.registered === 'true') {
         this.toastr.success('Signup Successful');
-        this.registerSuccessMessage = 'Please check your mailbox for activation email!';
+        this.registerSuccessMessage = 'Please sign in';
       }
     });
 
