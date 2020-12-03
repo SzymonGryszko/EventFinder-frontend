@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://myeventsfinder.herokuapp.com/'
+  baseUrl: 'https://myeventsfinder.herokuapp.com/'
 };
