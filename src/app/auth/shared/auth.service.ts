@@ -30,8 +30,11 @@ export class AuthService {
   constructor(private httpClient: HttpClient,
     private localStorage: LocalStorageService) {
 
-      this.userRole = this.getRoleFromJwt(this.localStorage.retrieve('authenticationToken'));
-      this.role.emit(this.userRole);
+      if (this.localStorage.retrieve('authenticationToken') != null) {
+        this.userRole = this.getRoleFromJwt(this.localStorage.retrieve('authenticationToken'));
+        this.role.emit(this.userRole);
+      }
+      
 
      }
 
