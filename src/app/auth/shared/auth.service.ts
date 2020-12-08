@@ -106,6 +106,9 @@ export class AuthService {
   }
 
   refreshToken() {
+    this.refreshTokenPayload.username = this.getUserName();
+    this.refreshTokenPayload.refreshToken = this.getRefreshToken();
+    
     return this.httpClient.post<LoginResponse>(this.baseUrl + 'api/auth/refreshToken',
       this.refreshTokenPayload)
       .pipe(tap(response => {
